@@ -19,7 +19,7 @@ public class CalculatorController {
     /**
      * Requisição GET que retorna uma string com a expressão matemática
      * que está sendo escrita pelo usuário
-     * @return
+     * @return ResponseEntity<String>
      */
     @GetMapping()
     public ResponseEntity<String> getExpression() {
