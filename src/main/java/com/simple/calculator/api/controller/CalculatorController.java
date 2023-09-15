@@ -16,6 +16,11 @@ public class CalculatorController {
 
     private CalculatorService calculatorService;
 
+    /**
+     * Requisição GET que retorna uma string com a expressão matemática
+     * que está sendo escrita pelo usuário
+     * @return
+     */
     @GetMapping()
     public ResponseEntity<String> getExpression() {
         var response =
