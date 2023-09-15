@@ -13,17 +13,15 @@ public class CalculatorService {
 
     private final StringBuilder expressionStringBuilder = new StringBuilder();
 
-    public String solveExpression(String expression) {
+    public void solveExpression(String expression) {
         ExpressionBuilder builder = new ExpressionBuilder(expression);
         Expression solved = builder.build();
         this.expression = String.valueOf(solved.evaluate());
-        return this.expression;
     }
 
-    public String buildExpression(String value) {
+    public void buildExpression(String value) {
         this.expressionStringBuilder.append(value);
         this.expression = this.expressionStringBuilder.toString();
-        return this.expression;
     }
 
     public void clear() {

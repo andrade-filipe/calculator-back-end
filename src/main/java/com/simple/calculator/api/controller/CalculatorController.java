@@ -7,11 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.HTML;
-
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 public class CalculatorController {
 
     private CalculatorService calculatorService;
@@ -19,6 +17,7 @@ public class CalculatorController {
     /**
      * Requisição GET que retorna uma string com a expressão matemática
      * que está sendo escrita pelo usuário
+     *
      * @return ResponseEntity<String>
      */
     @GetMapping()
@@ -45,7 +44,6 @@ public class CalculatorController {
         return response;
     }
 
-    @CrossOrigin
     @PostMapping()
     public ResponseEntity<String> buildExpression(@RequestBody ExpressionInput expression) {
         calculatorService.buildExpression(expression.getExpression());
