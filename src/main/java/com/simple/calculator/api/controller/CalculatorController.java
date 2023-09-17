@@ -81,6 +81,13 @@ public class CalculatorController {
         );
     }
 
+    /**
+     * Gets a String from the front-end and do a concatenation into the expression
+     * building the expression to be solved
+     *
+     * @param expression
+     * @return ResponseEntity<Response>
+     */
     @PostMapping("/build")
     public ResponseEntity<Response> buildExpression(@Valid @RequestBody ExpressionInput expression) {
         calculatorService.buildExpression(expression.getExpression());
