@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class CalculatorController {
 
     /**

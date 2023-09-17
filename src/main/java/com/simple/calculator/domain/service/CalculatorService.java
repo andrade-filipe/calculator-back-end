@@ -27,6 +27,8 @@ public class CalculatorService {
         ExpressionBuilder builder = new ExpressionBuilder(expression);
         Expression solved = builder.build();
         this.expression = String.valueOf(solved.evaluate());
+        expressionStringBuilder.delete(0, this.expressionStringBuilder.length());
+        expressionStringBuilder.append(this.expression);
     }
 
     /**
