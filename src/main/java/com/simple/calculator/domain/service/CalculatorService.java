@@ -19,13 +19,14 @@ public class CalculatorService {
         this.expression = String.valueOf(solved.evaluate());
     }
 
+
     public void buildExpression(String value) {
         this.expressionStringBuilder.append(value);
         this.expression = this.expressionStringBuilder.toString();
     }
 
     public void clear() {
-        this.expressionStringBuilder.delete(0, this.expressionStringBuilder.length() - 1);
+        this.expressionStringBuilder.delete(0, this.expressionStringBuilder.length());
         this.expression = "0";
     }
 }
