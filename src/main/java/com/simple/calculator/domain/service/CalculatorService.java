@@ -69,7 +69,7 @@ public class CalculatorService {
     private String percentageCase(String expression) {
         Pattern pattern = Pattern.compile("(\\d+) \\p{Punct} (\\d+(%))");
         Matcher matcher = pattern.matcher(expression);
-        if (matcher.matches()) {
+        if (matcher.find()) {
             float value1 = Float.parseFloat(matcher.group(1));
             float value2 = Float.parseFloat(matcher.group(2).replace("%",""));
             expression = expression.replace(
