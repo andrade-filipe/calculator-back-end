@@ -10,11 +10,8 @@ This class maps the requests URL and calls the respective method according to th
 
 has 4 methods on /api/v1:
 (/expression) getExpression():
-
 (/clear) clear():
-
 (/solve) solve():
-
 (/build) buildExpression(ExpressionInput):
 
 ## Model
