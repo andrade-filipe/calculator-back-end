@@ -3,6 +3,7 @@
 </p>
 <p>made with Java and Spring, it's a simple Rest API
 </p>
+
 ## Controller
 
 ### CalculatorController
