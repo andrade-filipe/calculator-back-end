@@ -11,9 +11,9 @@
 
 <p>has 4 methods on /api/v1:</p>
 <p></p>
-<p>(/expression) getExpression():</p>
-<p>(/clear) clear():</p>
-<p>(/solve) solve():</p>
+<p>(/expression) getExpression(): recieves the request at /expression and returns the Calculatorservice.expression variable</p>
+<p>(/clear) clear(): recieves the request at /clear and calls the clear() method in the service</p>
+<p>(/solve) solve(): recieves the request at /solve and cal</p>
 <p>(/build) buildExpression(ExpressionInput):</p>
 
 ## Model
