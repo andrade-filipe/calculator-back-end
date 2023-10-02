@@ -1,7 +1,7 @@
 # CalculatorAPP - back-end
 <p>This repository is the back-end for my Calculator project, the front-end is found at: https://github.com/andrade-filipe/calculator-app
 </p>
-<p>made with Java and Spring, it's a simple Rest API
+<p>made with Java and Spring, it's a simple API.
 </p>
 
 ## Controller
