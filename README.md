@@ -11,7 +11,8 @@
 
 <p>has 4 methods on /api/v1:</p>
 <p></p>
-<p>(/expression) getExpression():</p>(/clear) clear():
+<p>(/expression) getExpression():</p>
+<p>(/clear) clear():</p>
 <p>(/solve) solve():</p>
 <p>(/build) buildExpression(ExpressionInput):</p>
 
