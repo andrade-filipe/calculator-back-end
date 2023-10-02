@@ -25,7 +25,7 @@ the model template for any API response, with all needed information, this is re
 ## Domain/Service
 
 ### CalculatorService
-It's in this class that you want to code the methods that will be used by the Controller, every class should have a specific function inside the application, and the controller is to deal with the requests that, the service is to process the request
+It's in this class that you want to code the methods that will be used by the Controller, every class should have a specific function inside the application, the service is to processes the request made to the controller
 
 3 methods that interact with CalculatorController:
 solveExpression(string):
