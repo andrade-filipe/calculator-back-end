@@ -15,7 +15,7 @@ public class CalculatorService {
     /**
      * Variable that displays the current state of the math expression
      */
-    public String expression = "0";
+    private String expression = "0";
 
     /**
      * String builder that helps to concatenate the expression string
@@ -77,5 +77,9 @@ public class CalculatorService {
                     String.valueOf((value1 * value2 / 100)));
         }
         return expression;
+    }
+
+    public String getExpression(){
+        return this.expression;
     }
 }

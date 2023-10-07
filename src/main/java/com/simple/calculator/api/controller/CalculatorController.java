@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.*;
 public class CalculatorController {
 
     /**
-     * Injeção da classe de Serviço no Controlador
+     * Injecting Service Class in Controller
      */
     private final CalculatorService calculatorService;
 
@@ -36,7 +36,7 @@ public class CalculatorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.expression))
+                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("Expression sucessfully retrieved")
                         .status(OK)
                         .statusCode(OK.value())
@@ -52,11 +52,11 @@ public class CalculatorController {
      */
     @GetMapping("/solve")
     public ResponseEntity<Response> solve() {
-        calculatorService.solveExpression(calculatorService.expression);
+        calculatorService.solveExpression(calculatorService.getExpression());
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.expression))
+                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("Expression solved")
                         .status(OK)
                         .statusCode(OK.value())
@@ -75,7 +75,7 @@ public class CalculatorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.expression))
+                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("Expression cleared")
                         .status(OK)
                         .statusCode(OK.value())
@@ -96,7 +96,7 @@ public class CalculatorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.expression))
+                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("buildExpression called")
                         .status(CREATED)
                         .statusCode(CREATED.value())

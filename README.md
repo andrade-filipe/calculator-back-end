@@ -5,4 +5,17 @@
 
 ## Features
 
-<p></p>
+<p>Response Class: Custom Response class so my API can be always consistent</p>
+<p>ExpressionInput Class: Controls how the Expression is inputted into the API</p>
+<ul>
+<li>CalculatorController: Manage all requests made to the API</li>
+<li>
+    <ul>
+        <li>getExpression(): Returns the current value of the expression</li>
+        <li>solve(): Returns the solved expression</li>
+        <li>clear(): Returns the expression cleared</li>
+        <li>buildExpression(): Process the inputs from the user </li>
+    </ul>
+</li>
+</ul>
+
