@@ -16,4 +16,6 @@
         <li>buildExpression(): Process the inputs from the user ✔️</li>
     </ul>
 </ul>
+<p>CalculatorService: Process all the requestes made to the Controller ✔️</p>
+<p>Robust Error Handler 🔴</p>
 
