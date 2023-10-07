@@ -8,7 +8,7 @@
 <p>Response Class: Custom Response class so my API can be always consistent ✔️</p>
 <p>ExpressionInput Class: Controls how the Expression is inputted into the API ✔️</p>
 <ul>
-CalculatorController: Manage all requests made to the API ✔️
+<li>CalculatorController: Manage all requests made to the API ✔️</li>
     <ul>
         <li>getExpression(): Returns the current value of the expression ✔️</li>
         <li>solve(): Returns the solved expression ✔️</li>
