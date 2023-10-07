@@ -10,12 +10,12 @@
 <ul>
 <li>CalculatorController: Manage all requests made to the API ✔️</li>
     <ul>
-        <li>getExpression(): Returns the current value of the expression ✔️</li>
-        <li>solve(): Returns the solved expression ✔️</li>
-        <li>clear(): Returns the expression cleared ✔️</li>
-        <li>buildExpression(): Process the inputs from the user ✔️</li>
+        <li>/expression: Returns the current value of the expression ✔️</li>
+        <li>/solve: Returns the solved expression ✔️</li>
+        <li>/clear: Returns the expression cleared ✔️</li>
+        <li>/build: Process the inputs from the user ✔️</li>
     </ul>
 </ul>
-<p>CalculatorService: Process all the requestes made to the Controller ✔️</p>
+<p>CalculatorService: Process all the requests made to the Controller ✔️</p>
 <p>Robust Error Handler 🔴</p>
 
