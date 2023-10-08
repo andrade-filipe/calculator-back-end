@@ -17,5 +17,12 @@
     </ul>
 </ul>
 <p>CalculatorService: Process all the requests made to the Controller ✔️</p>
-<p>Robust Error Handler 🔴</p>
+<ul>
+    <li>Robust Error Handler 🔴</li>
+    <ul>
+        <li>Percentage Calculations 🔴</li>
+        <li>Algebra 🔴</li>
+        <li>Complex Calculations 🔴</li>
+    </ul>
+</ul>
 
