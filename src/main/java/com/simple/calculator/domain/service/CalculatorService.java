@@ -1,5 +1,6 @@
 package com.simple.calculator.domain.service;
 
+import com.simple.calculator.api.exception.GlobalExceptionHandler;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.objecthunter.exp4j.Expression;
@@ -44,7 +45,7 @@ public class CalculatorService {
     }
 
     /**
-     * Resets the expression and the StringBuilder, now the user can write
+     * Resets the expression, now the user can write
      * any other expression
      */
     public void clear() {
