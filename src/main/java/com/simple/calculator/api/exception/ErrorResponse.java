@@ -19,5 +19,4 @@ public class ErrorResponse {
     protected int statusCode;
     protected HttpStatus status;
     protected String message;
-    protected Map<?, ?> data;
 }

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.EmptyStackException;
-import java.util.Map;
 
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -29,8 +28,7 @@ public class GlobalExceptionHandler{
                         .path(request.getRequestURI())
                         .statusCode(BAD_REQUEST.value())
                         .status(BAD_REQUEST)
-                        .message("Invalid Expression" + exception.getMessage())
-                        .data(Map.of("expression", "Invalid Expression"))
+                        .message("Invalid Expression " + exception.getMessage())
                         .build()
         );
     }
