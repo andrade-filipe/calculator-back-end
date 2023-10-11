@@ -90,6 +90,7 @@ public class CalculatorController {
      * @return ResponseEntity<Response>
      */
     @PostMapping("/build")
+    @ResponseStatus(CREATED)
     public ResponseEntity<Response> buildExpression(@Valid @RequestBody ExpressionInput expression) {
         calculatorService.buildExpression(expression.getExpression());
         return ResponseEntity.ok(
