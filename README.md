@@ -18,7 +18,7 @@
 </ul>
 <p>CalculatorService: Process all the requests made to the Controller ✔️</p>
 <ul>
-    <li>Robust Error Handler ✔️</li>
+    <li>Exception Handler ✔️</li>
     <ul>
         <li>Percentage Calculations ✔️</li>
         <li>Invalid Expressions ✔️</li>
