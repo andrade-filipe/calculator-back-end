@@ -55,7 +55,6 @@ public class CalculatorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("Expression solved")
                         .status(OK)
                         .statusCode(OK.value())
@@ -74,7 +73,6 @@ public class CalculatorController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.getExpression()))
                         .message("Expression cleared")
                         .status(OK)
                         .statusCode(OK.value())
