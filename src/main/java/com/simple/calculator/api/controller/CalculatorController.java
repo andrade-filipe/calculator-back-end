@@ -1,7 +1,9 @@
 package com.simple.calculator.api.controller;
 
+import com.simple.calculator.api.mapper.ExpressionMapper;
 import com.simple.calculator.api.model.input.ExpressionInput;
-import com.simple.calculator.api.model.response.Response;
+import com.simple.calculator.api.model.response.ExpressionResponse;
+import com.simple.calculator.domain.model.ExpressionModel;
 import com.simple.calculator.domain.service.CalculatorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,8 @@ public class CalculatorController {
      */
     private final CalculatorService calculatorService;
 
+    private final ExpressionMapper expressionMapper;
+
     /**
      * Requisição GET que retorna uma string com a expressão matemática
      * que está sendo escrita pelo usuário
@@ -31,53 +35,34 @@ public class CalculatorController {
      * @return ResponseEntity<Response>
      */
     @GetMapping("/expression")
-    public ResponseEntity<Response> getExpression() {
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.getExpression()))
-                        .message("Expression sucessfully retrieved")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
+    public ResponseEntity<ExpressionResponse> getExpression() {
+        var expression = this.expressionMapper.toResponse(calculatorService.getExpression());
+        return ResponseEntity.ok(expression);
     }
 
     /**
      * Requisição GET que retorna uma string com a expressão matemática
      * Resolvida
      *
-     * @return ResponseEntity<String>
+     * @return ResponseEntity<ExpressionResponse>
      */
     @GetMapping("/solve")
-    public ResponseEntity<Response> solve() {
-        calculatorService.solveExpression(calculatorService.getExpression());
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .message("Expression solved")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
+    public ResponseEntity<ExpressionResponse> solve() {
+        this.calculatorService.solveExpression();
+        var expression = this.expressionMapper.toResponse(this.calculatorService.getExpression());
+        return ResponseEntity.ok(expression);
     }
 
     /**
      * Requisição GET que limpa a variável "expression" que está no service
      *
-     * @return ResponseEntity<String>
+     * @return ResponseEntity<ExpressionResponse>
      */
     @GetMapping("/clear")
-    public ResponseEntity<Response> clear() {
+    public ResponseEntity<ExpressionResponse> clear() {
         calculatorService.clear();
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .message("Expression cleared")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
+        var expression = this.expressionMapper.toResponse(this.calculatorService.getExpression());
+        return ResponseEntity.ok(expression);
     }
 
     /**
@@ -89,16 +74,10 @@ public class CalculatorController {
      */
     @PostMapping("/build")
     @ResponseStatus(CREATED)
-    public ResponseEntity<Response> buildExpression(@Valid @RequestBody ExpressionInput expression) {
-        calculatorService.buildExpression(expression.getExpression());
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Map.of("expression", calculatorService.getExpression()))
-                        .message("buildExpression called")
-                        .status(CREATED)
-                        .statusCode(CREATED.value())
-                        .build()
-        );
+    public ExpressionModel buildExpression(@Valid @RequestBody ExpressionInput expression) {
+
+        var buildThis = this.expressionMapper.toEntity(expression);
+        calculatorService.buildExpression(buildThis);
+        return calculatorService.getExpression();
     }
 }

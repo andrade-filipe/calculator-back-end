@@ -1,8 +1,11 @@
 package com.simple.calculator.domain.service;
 
-import com.simple.calculator.api.exception.GlobalExceptionHandler;
+import com.simple.calculator.api.mapper.ExpressionMapper;
+import com.simple.calculator.domain.model.ExpressionModel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import net.objecthunter.exp4j.Expression;
 import org.springframework.stereotype.Service;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -10,6 +13,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Getter
 @RequiredArgsConstructor
 @Service
 public class CalculatorService {
@@ -17,30 +21,32 @@ public class CalculatorService {
     /**
      * Variable that displays the current state of the math expression
      */
-    @Getter
-    private String expression = "";
+    @Setter
+    private ExpressionModel expression;
 
     /**
      * Solves the given expression by using exp4j Library and refreshes this.expression
-     * @param expression
      */
-    public void solveExpression(String expression) {
-        if(expression.contains("%")) {
-            expression = percentageCase(expression);
+    public void solveExpression() {
+        String solveThis = this.expression.getExpression();
+
+        if(solveThis.contains("%")) {
+            solveThis = percentageCase(solveThis);
         }
-        ExpressionBuilder builder = new ExpressionBuilder(expression);
+        ExpressionBuilder builder = new ExpressionBuilder(solveThis);
         Expression solved = builder.build();
         double result = solved.evaluate();
-        this.expression = String.valueOf(result);
+
+        this.expression.setExpression(String.valueOf(result));
     }
 
     /**
-     * Builds the expression one char at a time, it's designed that way because
-     * of the input on the front-end, the calculator has a virtual keyboard
+     * changes the this.expression value acording to the user input on the
+     * front-end
      *
      * @param value
      */
-    public void buildExpression(String value) {
+    public void buildExpression(ExpressionModel value) {
         this.expression = value;
     }
 
@@ -49,7 +55,7 @@ public class CalculatorService {
      * any other expression
      */
     public void clear() {
-        this.expression = "";
+        this.expression.setExpression("");
     }
 
     /**
