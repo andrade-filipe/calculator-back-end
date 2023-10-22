@@ -25,6 +25,30 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 @RequiredArgsConstructor
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private final MessageSource messageSource;
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatusCode status,
+                                                                  WebRequest request){
+        ProblemDetail problemDetail = ProblemDetail.forStatus(status);
+        problemDetail.setTitle("Expressão Inválida");
+        problemDetail.setType(URI.create("https://filipeandrade.com/expressao-invalida"));
+        var fields = ex.getBindingResult()
+                .getAllErrors()
+                .stream()
+                .collect(Collectors.toMap(
+                        objectError -> ((FieldError) objectError).getField(),
+                        objectError -> this.messageSource.getMessage(
+                                objectError,
+                                LocaleContextHolder.getLocale()
+                        )));
+        problemDetail.setProperty("fields", fields);
+
+        return handleExceptionInternal(ex, problemDetail, headers, status, request);
+    }
+
     @ExceptionHandler({
             RuntimeException.class,
             IllegalArgumentException.class,
