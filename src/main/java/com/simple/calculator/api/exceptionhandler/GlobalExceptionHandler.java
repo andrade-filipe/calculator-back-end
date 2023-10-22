@@ -1,5 +1,6 @@
 package com.simple.calculator.api.exceptionhandler;
 
+import com.simple.calculator.domain.exceptions.InvalidExpression;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import net.objecthunter.exp4j.tokenizer.UnknownFunctionOrVariableException;
@@ -24,38 +25,13 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 @RequiredArgsConstructor
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private final MessageSource messageSource;
-
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers,
-                                                                  HttpStatusCode status,
-                                                                  WebRequest request) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(status);
-        problemDetail.setTitle("Um ou mais campos inválidos");
-        problemDetail.setType(URI.create("https://algatransito.com/erros/campos-invalidos"));
-
-        var fields = ex.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .collect(Collectors.toMap(
-                        objectError -> ((FieldError) objectError).getField(),
-                        objectError -> messageSource.getMessage(
-                                objectError,
-                                LocaleContextHolder.getLocale()
-                        )));
-
-        problemDetail.setProperty("fields", fields);
-
-        return handleExceptionInternal(ex, problemDetail, headers, status, request);
-    }
-
     @ExceptionHandler({
             RuntimeException.class,
             IllegalArgumentException.class,
             EmptyStackException.class,
             UnknownFunctionOrVariableException.class,
-            IllegalArgumentException.class})
+            IllegalArgumentException.class,
+            InvalidExpression.class})
     public ProblemDetail handleInvalidExpression(Exception exception,
                                                  HttpServletRequest request){
         ProblemDetail problemDetail = ProblemDetail.forStatus(BAD_REQUEST);

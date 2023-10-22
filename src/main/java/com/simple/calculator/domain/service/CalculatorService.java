@@ -1,8 +1,7 @@
 package com.simple.calculator.domain.service;
 
-import com.simple.calculator.api.mapper.ExpressionMapper;
+import com.simple.calculator.domain.exceptions.InvalidExpression;
 import com.simple.calculator.domain.model.ExpressionModel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -36,7 +35,6 @@ public class CalculatorService {
         ExpressionBuilder builder = new ExpressionBuilder(solveThis);
         Expression solved = builder.build();
         double result = solved.evaluate();
-
         this.expression.setExpression(String.valueOf(result));
     }
 
@@ -47,7 +45,11 @@ public class CalculatorService {
      * @param value
      */
     public void buildExpression(ExpressionModel value) {
-        this.expression = value;
+        try{
+            this.expression = value;
+        }catch (Exception e){
+            throw new InvalidExpression("Expressão Inválida");
+        }
     }
 
     /**
