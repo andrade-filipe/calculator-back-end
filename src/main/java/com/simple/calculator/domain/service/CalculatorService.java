@@ -45,11 +45,7 @@ public class CalculatorService {
      * @param value
      */
     public void buildExpression(ExpressionModel value) {
-        try{
-            this.expression = value;
-        }catch (Exception e){
-            throw new InvalidExpression("Expressão Inválida");
-        }
+        this.expression = value;
     }
 
     /**
