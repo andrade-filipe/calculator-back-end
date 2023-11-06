@@ -1,10 +1,9 @@
 package com.simple.calculator.domain.service;
 
 import com.simple.calculator.domain.model.ExpressionModel;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorServiceTest {
 

@@ -1,13 +1,12 @@
 package com.simple.calculator.domain.service;
 
-import com.simple.calculator.domain.exceptions.InvalidExpression;
 import com.simple.calculator.domain.model.ExpressionModel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.objecthunter.exp4j.Expression;
-import org.springframework.stereotype.Service;
 import net.objecthunter.exp4j.ExpressionBuilder;
+import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,7 +28,7 @@ public class CalculatorService {
     public void solveExpression() {
         String solveThis = this.expression.getExpression();
 
-        if(solveThis.contains("%")) {
+        if (solveThis.contains("%")) {
             solveThis = percentageCase(solveThis);
         }
         ExpressionBuilder builder = new ExpressionBuilder(solveThis);
@@ -69,7 +68,7 @@ public class CalculatorService {
         Matcher matcher = pattern.matcher(expression);
         if (matcher.find()) {
             float value1 = Float.parseFloat(matcher.group(1));
-            float value2 = Float.parseFloat(matcher.group(2).replace("%",""));
+            float value2 = Float.parseFloat(matcher.group(2).replace("%", ""));
             expression = expression.replace(
                     matcher.group(2),
                     String.valueOf((value1 * value2 / 100)));

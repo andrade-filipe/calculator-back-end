@@ -13,11 +13,11 @@ public class ExpressionMapper {
 
     private final ModelMapper modelMapper;
 
-    public ExpressionModel toEntity(ExpressionInput expressionInput){
+    public ExpressionModel toEntity(ExpressionInput expressionInput) {
         return modelMapper.map(expressionInput, ExpressionModel.class);
     }
 
-    public ExpressionResponse toResponse(ExpressionModel expression){
+    public ExpressionResponse toResponse(ExpressionModel expression) {
         return modelMapper.map(expression, ExpressionResponse.class);
     }
 }
