@@ -38,26 +38,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setTitle("Expressão Inválida");
         problemDetail.setType(URI.create("https://filipeandrade.com/expressao-invalida"));
         var fields = ex.getBindingResult()
-                .getAllErrors()
-                .stream()
-                .collect(Collectors.toMap(
-                        objectError -> ((FieldError) objectError).getField(),
-                        objectError -> this.messageSource.getMessage(
-                                objectError,
-                                LocaleContextHolder.getLocale()
-                        )));
+            .getAllErrors()
+            .stream()
+            .collect(Collectors.toMap(
+                objectError -> ((FieldError) objectError).getField(),
+                objectError -> this.messageSource.getMessage(
+                    objectError,
+                    LocaleContextHolder.getLocale()
+                )));
         problemDetail.setProperty("fields", fields);
 
         return handleExceptionInternal(ex, problemDetail, headers, status, request);
     }
 
     @ExceptionHandler({
-            RuntimeException.class,
-            IllegalArgumentException.class,
-            EmptyStackException.class,
-            UnknownFunctionOrVariableException.class,
-            IllegalArgumentException.class,
-            InvalidExpression.class})
+        RuntimeException.class,
+        IllegalArgumentException.class,
+        EmptyStackException.class,
+        UnknownFunctionOrVariableException.class,
+        IllegalArgumentException.class,
+        InvalidExpression.class})
     public ProblemDetail handleInvalidExpression(Exception exception,
                                                  HttpServletRequest request) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(BAD_REQUEST);

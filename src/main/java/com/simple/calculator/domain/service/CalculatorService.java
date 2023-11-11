@@ -70,8 +70,8 @@ public class CalculatorService {
             float value1 = Float.parseFloat(matcher.group(1));
             float value2 = Float.parseFloat(matcher.group(2).replace("%", ""));
             expression = expression.replace(
-                    matcher.group(2),
-                    String.valueOf((value1 * value2 / 100)));
+                matcher.group(2),
+                String.valueOf((value1 * value2 / 100)));
         }
         return expression;
     }

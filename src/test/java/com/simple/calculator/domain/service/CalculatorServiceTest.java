@@ -19,8 +19,8 @@ class CalculatorServiceTest {
         calculatorService.solveExpression();
 
         assertEquals(
-                expressionModelResult.getExpression(),
-                calculatorService.getExpression().getExpression());
+            expressionModelResult.getExpression(),
+            calculatorService.getExpression().getExpression());
     }
 
     @Test
@@ -32,7 +32,7 @@ class CalculatorServiceTest {
         calculatorService.buildExpression(expressionModel);
 
         assertEquals(
-                expressionModel.getExpression(),
-                calculatorService.getExpression().getExpression());
+            expressionModel.getExpression(),
+            calculatorService.getExpression().getExpression());
     }
 }
