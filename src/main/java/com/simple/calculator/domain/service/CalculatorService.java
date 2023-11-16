@@ -26,7 +26,7 @@ public class CalculatorService {
      * Solves the given expression by using exp4j Library and refreshes this.expression
      */
     public void solveExpression() {
-        String solveThis = this.expression.getExpression();
+        String solveThis = this.expression.getExpression().trim();
 
         if (solveThis.contains("%")) {
             solveThis = percentageCase(solveThis);
@@ -65,15 +65,23 @@ public class CalculatorService {
      */
     private String percentageCase(String expression) {
         Pattern pattern = Pattern.compile("(\\d+)\\p{Punct}(\\d+(%))");
+        Pattern pattern2 = Pattern.compile("(\\d+) \\p{Punct} (\\d+(%))");
         Matcher matcher = pattern.matcher(expression);
+        Matcher matcher2 = pattern2.matcher(expression);
         if (matcher.find()) {
-            float value1 = Float.parseFloat(matcher.group(1));
-            float value2 = Float.parseFloat(matcher.group(2).replace("%", ""));
-            expression = expression.replace(
-                matcher.group(2),
-                String.valueOf((value1 * value2 / 100)));
+            return replacePercentageForMultiplication(matcher, expression);
+        } else if (matcher2.find()) {
+            return replacePercentageForMultiplication(matcher2, expression);
         }
         return expression;
     }
 
+    private String replacePercentageForMultiplication(Matcher matcher, String expression){
+        float value1 = Float.parseFloat(matcher.group(1));
+        float value2 = Float.parseFloat(matcher.group(2).replace("%", ""));
+        return expression.replace(
+            matcher.group(2),
+            String.valueOf((value1 * value2 / 100))
+        );
+    }
 }
