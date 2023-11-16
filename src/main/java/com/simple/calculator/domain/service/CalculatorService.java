@@ -76,7 +76,7 @@ public class CalculatorService {
         return expression;
     }
 
-    private String replacePercentageForMultiplication(Matcher matcher, String expression){
+    private String replacePercentageForMultiplication(Matcher matcher, String expression) {
         float value1 = Float.parseFloat(matcher.group(1));
         float value2 = Float.parseFloat(matcher.group(2).replace("%", ""));
         return expression.replace(
